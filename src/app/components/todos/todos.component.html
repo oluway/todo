@@ -1,0 +1,44 @@
+
+<mat-card class="card">
+   <div style="text-align: end">
+      <form [formGroup]="todoForm" layout-align="center" layout-padding (ngSubmit)="addTodo()">
+        <input type="text" formControlName="todo" class="input" placeholder="Please Enter Task">
+        <button type="submit" [disabled]="!todoForm.valid" class="margin"  mat-raised-button color="primary">Add Task</button>
+      </form>
+   </div>
+</mat-card>
+<mat-card class="card">
+
+      <mat-card>
+        <section>
+          <div>
+            <div style="float: left;">
+              <app-filter (filterValue)="getFilteredValue($event)"></app-filter>
+            </div>
+            <div style="text-align: end" >
+              <button (click)="clearCompleted()" mat-raised-button color="accent" class="form-control margin">Clear Completed Task</button>
+            </div>
+          </div>
+        </section>
+      </mat-card>
+
+  <div cdkDropList class="example-list card" style="padding: 20px; margin: 30px; width: 606px;" (cdkDropListDropped)="drop($event)">
+    <div style="padding: 1px;">
+      <div class="example-box" *ngFor="let item of todoList" cdkDrag [ngClass]="item?.isCompleted ? 'alert alert-success text-decoration-line-through' : 'alert alert-secondary'">{{item?.todo }}
+      <div class="col">
+        <button (click)="deleteTodo(item.id)" class="margin"  mat-raised-button color="warn">
+          <mat-icon color="danger">close</mat-icon>
+        </button>
+        <button (click)="todoIsCompleted(item.id)"  class="success" mat-raised-button color="success">
+          <mat-icon color="success">done</mat-icon>
+        </button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  </mat-card>
+
+
+
+

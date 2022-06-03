@@ -1,0 +1,6 @@
+<div class="form-group">
+  <label for="inputState" clas="margin">Filter</label>
+  <select class="custom-select custom-select-lg form-control" (change)="seletedValue($event)">
+    <option *ngFor="let item of filterData" [value]="item.value">{{item.label}}</option>
+ </select>
+</div>
